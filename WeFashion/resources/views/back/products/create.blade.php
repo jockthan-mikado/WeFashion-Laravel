@@ -2,9 +2,10 @@
 @section("contenu")
 
    
-
+<form action="{{ route('products.store') }}" method='POST' enctype="multipart/form-data">
+    @csrf
         <div class="row p-4 pt-5">
-            <form role="form">
+           
                 <div  class="d-flex">
                     <div class="col-md-10">
 
@@ -93,7 +94,7 @@
                         <button type="button" wire:click="goToListUser()" class="btn btn-danger"><a href="{{ route('admin') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
                     </div>
                 </div>     
-            </form>  
+            
         </div>
-
+    </form>  
 @endsection

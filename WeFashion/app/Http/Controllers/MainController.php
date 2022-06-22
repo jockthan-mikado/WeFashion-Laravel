@@ -20,11 +20,11 @@ class MainController extends Controller
         return view('shop.index', ['products'=> $products]);
     }
     public function dashbord(){
-        $products = Product::paginate(9);
-        return view('home' , ['products'=> $products]);
+        $products = Product::paginate(15);
+        return view('back.products.index' , ['products'=> $products]);
     }
-    public function dashbordAddProduct(){
-        return view('addproduct');
+    public function formProduct(){
+        return view('back.products.create');
     }
     public function produit(Request $request){
 

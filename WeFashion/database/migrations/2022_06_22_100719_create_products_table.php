@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('price');
             $table->enum('visibility', ['Published', 'Unpublished'])->default('Unpublished');
             $table->enum('status', ['Solde', 'Standard'])->default('Standard');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }
