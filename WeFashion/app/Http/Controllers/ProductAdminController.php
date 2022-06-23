@@ -47,7 +47,7 @@ class ProductAdminController extends Controller
     public function store(Request $request)
     {
         
-        $validator = Validator::make($request->all(), [
+         Validator::make($request->all(), [
             'name'        => 'required|min:5',
 			'description' => 'required|string',
             'price'        => 'float',
@@ -56,28 +56,23 @@ class ProductAdminController extends Controller
 			'status'      => 'in:Published,Unpublished',
 			'picture'     => 'image|max:1000'
         ]);
-        // $this->validate($request, [
-        //     'name'        => 'required|min:5',
-		// 	'description' => 'required|string',
-		// 	'category_id' => 'integer',
-		// 	'sizes' 	  => 'required',
-		// 	'status'      => 'in:Published,Unpublished',
-		// 	'picture'     => 'image|max:1000'
-  
-        // ]);
-        //dd($validator);
+        
         $product = Product::create($request->all());
         $product->sizes()->attach($request->sizes);
-        if (!empty($request->picture)) {
-			$link = $request->picture->store('images');
-			// On récupère juste le nom du fichier :
-			$imgName = substr($link, strrpos($link, '/') + 1);
-
-			$product->picture()->create([
-				'link'  => $imgName,
-				'title' => $request->title_image,
-			]);
-		}
+         // image
+         $im = $request->file('picture');
+         
+         // si on associe une image à un produit
+         if (!empty($im)) {
+ 
+             $link = $request->file('picture')->store('images');
+ 
+             // mettre à jour la table picture pour le lien vers l'image dans la base de données;
+             $product->picture()->create([
+                 'link' => $link,
+                 'title' => $request->title_image?? $request->title_image
+             ]);
+         }
         return redirect()->route('products.index')->with('message', 'Produit ajouté !');
     
 
@@ -119,6 +114,7 @@ class ProductAdminController extends Controller
      */
     public function edit($id)
     {
+       
         $product       = Product::find($id);
 		$sizes    = Size::All();
 		$categoryProduct = Category::orderBy('name')->get(); // tri par nom => ne marche pas sur All()
@@ -127,7 +123,7 @@ class ProductAdminController extends Controller
 		foreach ($product->sizes as $value) {
 			$checkedSizes[] = $value->id;
 		}
-
+        
 		// return view('back.books.edit', ['book' => $book, 'authors' => $authors]);
 		return view('back.products.edit', compact('product', 'sizes', 'checkedSizes', 'categoryProduct'));
 
@@ -190,4 +186,4 @@ class ProductAdminController extends Controller
 
         return redirect()->back()->with('message', 'Produit supprimé  avec Succès!');
     }
-}
+} 

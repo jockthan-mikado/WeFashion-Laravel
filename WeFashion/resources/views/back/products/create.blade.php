@@ -22,12 +22,18 @@
                                         <div class="form-group">
                                             <label>Nom</label>
                                             <input type="text" name="name" value="{{old('name')}}" class="form-control" >
+                                            @error('name')
+                                            <span style="color:red">{{$message}}</span>
+                                            @enderror
                                         </div>
                                            
                                       
                                         <div class="form-group">
                                                 <label>Description</label>
                                                 <textarea name="description" class="form-control" >{{old('description')}}</textarea>
+                                                @error('description')
+                                                <span style="color:red">{{$message}}</span>
+                                                @enderror
                                         </div>
                                         
                                         
@@ -52,6 +58,9 @@
                                                     Etat :<br>
                                                     <label><input type="radio" name="status" value="Solde" {{(old('status')=="Solde")?'checked':''}}> Solde</label><br>
                                                     <label><input type="radio" name="status" value="Standard" {{(old('status')=="Standard")?'checked':''}}> Standard</label>
+                                                    @error('status')
+                                                    <span style="color:red">{{$message}}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -59,13 +68,13 @@
                                                     Visibilité :<br>
                                                     <label><input type="radio" name="visibility" value="Published" {{(old('visibility')=="Published")?'checked':''}}> Publier</label><br>
                                                     <label><input type="radio" name="visibility" value="Unpublished" {{(old('visibility')=="Unpublished")?'checked':''}}> Non Publier</label>
+                                                    @error('visibility')
+                                                    <span style="color:red">{{$message}}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <br>
-                                            Date de publication : <input type=date name="published_at" value="{{old('published_at')}}">
-                                        </div>
+                                        
                                         <div class="form-group">
                                             Taille(s) :<br>
                                             {{-- @dump($book->authors->first()->id) --}}
@@ -73,7 +82,9 @@
                                             @foreach ($sizes as $size)
                                             <label><input type="checkbox" name="size[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', []))?'checked':''}}>  {{$size->name}}</label><br>
                                             @endforeach
-                                            
+                                            @error('sizes')
+                                            <span style="color:red">{{$message}}</span>
+                                            @enderror
                                         </div>
                                         
                                     
@@ -85,8 +96,10 @@
                                 <div class="card-footer  col-md-4" >
                                     Title de l'image : <input class="form-control" type="text" name="title_image" value="{{old('title_image')}}"><br>
                                     Ajouter l'image : <input class="form-control" type="file" name="picture">
+                                    @error('picture')
+                                    <span style="color:red">{{$message}}</span>
+                                    @enderror
                                     
-                                     <img src="" width="200"/>    
 
 
                                      
