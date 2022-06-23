@@ -18,9 +18,8 @@ class ProductAdminController extends Controller
     public function index()
     {
         
-		$products = Product::paginate(15);
-
-		return view('back.products.index', ['products' => $products]);
+        $products = Product::paginate(15);
+        return view('back.products.index' , ['products'=> $products]);
     }
 
     /**
@@ -33,7 +32,7 @@ class ProductAdminController extends Controller
         $sizes    = Size::All();
 		$categoryProduct = Category::orderBy('name')->get();
 
-		return view('back.books.create', compact('sizes', 'categoryProduct'));
+		return view('back.products.create', compact('sizes', 'categoryProduct'));
     }
 
     /**
@@ -45,7 +44,7 @@ class ProductAdminController extends Controller
     public function store(ProductRequest $productRequest)
     {
         $product = Product::create($productRequest->all());
-		$product->sizes()->attach($productRequest->authors);
+		$product->sizes()->attach($productRequest->sizes);
 
 		if (!empty($productRequest->picture)) {
 			$link = $productRequest->picture->store('images');
@@ -58,7 +57,7 @@ class ProductAdminController extends Controller
 			]);
 		}
 
-		return redirect()->route('back.products.index')->with('message', 'Produit ajouté !');
+		return redirect()->route('products.index')->with('message', 'Produit ajouté !');
     }
 
     /**

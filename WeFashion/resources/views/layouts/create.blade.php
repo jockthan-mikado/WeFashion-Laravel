@@ -90,7 +90,7 @@
                         </div>
                     <div> 
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
-                        <button type="button" wire:click="goToListUser()" class="btn btn-danger"><a href="{{ route('admin') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
+                        <button type="button" wire:click="goToListUser()" class="btn btn-danger"><a href="{{ route('products.create') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
                     </div>
                 </div>     
             </form>  

@@ -19,19 +19,19 @@ class MainController extends Controller
         //dd($produits);
         return view('shop.index', ['products'=> $products]);
     }
-    public function dashbord(){
-        $products = Product::paginate(15);
-        return view('back.products.index' , ['products'=> $products]);
-    }
-    public function formProduct(){
-        return view('back.products.create');
-    }
+    // public function dashbord(){
+    //     $products = Product::paginate(15);
+    //     return view('back.products.index' , ['products'=> $products]);
+    // }
+    // public function formProduct(){
+    //     return view('back.products.create');
+    // }
     public function produit(Request $request){
 
         //on recupère un produit en fonction de la valeur passée en paramètres
         $product = Product::find($request->id);
         //dd($produit);
 
-        return view('shop.produit', ['product'=>$product]);
+        return view('shop.product', ['product'=>$product]);
     }
 }

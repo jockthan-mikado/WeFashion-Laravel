@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductAdminController;
 
 
 
@@ -23,13 +23,12 @@ Route::get('/produit/{id}',[MainController::class, 'produit'])->name('voir_produ
 
 Auth::routes();
 
-Route::get('/admin', [MainController::class,'dashbord'])->middleware('auth')->name('admin');
+//Route::get('/admin', [MainController::class,'dashbord'])->middleware('auth')->name('admin');
 
-Route::resource('admin/products', ProductController::class)->middleware('auth')->parameters([
-	'admin/products' => 'product',
-]);
+Route::resource('admin/products', ProductAdminController::class)->middleware('auth');
 
-Route::get('/admin/addProduct', [MainController::class,'formProduct'])->middleware('auth')->name('admin.product');
-        
+//Route::get('/admin/addProduct', [MainController::class,'formProduct'])->middleware('auth')->name('admin.product');
+       
+
     
 

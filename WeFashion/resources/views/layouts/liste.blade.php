@@ -16,7 +16,7 @@
                     {{--d-flex permet de mettre ça en flex et align-items-center permet de le centrer --}}
                     <div class="card-tools d-flex align-items-center">
                         {{--"fas fa-user-plus" permet d'ajouter l'icon plus et "btn btn-link text-white mr-4" permet  un bouton de couleur de texte blanche et wire:click permet de dire à laravel pour ce bouton nous avons attaché un événement click qui appelle la fonction goToAddUser() et prevent empeche le comportement hyppertext--}}
-                        <a class="btn btn-link text-white mr-4 d-block"  href="{{ route('admin.product') }}" ><i class="fas fa-user-plus"></i>Nouvel Article</a>
+                        <a class="btn btn-link text-white mr-4 d-block"  href="{{ route('products.create') }}" ><i class="fas fa-user-plus"></i>Nouvel Article</a>
                         <div class="input-group input-group-md" style="width: 250px;">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
                             <div class="input-group-append">

@@ -34,7 +34,7 @@
         <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex ">
-                    <a href="{{ route('admin') }}"  class=" navbar-brand d-flex align-items-center" >Se connecter</a>
+                    <a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Se connecter</a>
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <strong>WeFashion</strong>
                     </a>
