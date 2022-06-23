@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProductAdminController extends Controller
 {
@@ -42,23 +43,59 @@ class ProductAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $productRequest)
+    //public function store(ProductRequest $productRequest)
+    public function store(Request $request)
     {
-        $product = Product::create($productRequest->all());
-		$product->sizes()->attach($productRequest->sizes);
-
-		if (!empty($productRequest->picture)) {
-			$link = $productRequest->picture->store('images');
+        
+        $validator = Validator::make($request->all(), [
+            'name'        => 'required|min:5',
+			'description' => 'required|string',
+            'price'        => 'float',
+			'category_id' => 'integer',
+			'sizes' 	  => 'required',
+			'status'      => 'in:Published,Unpublished',
+			'picture'     => 'image|max:1000'
+        ]);
+        // $this->validate($request, [
+        //     'name'        => 'required|min:5',
+		// 	'description' => 'required|string',
+		// 	'category_id' => 'integer',
+		// 	'sizes' 	  => 'required',
+		// 	'status'      => 'in:Published,Unpublished',
+		// 	'picture'     => 'image|max:1000'
+  
+        // ]);
+        //dd($validator);
+        $product = Product::create($request->all());
+        $product->sizes()->attach($request->sizes);
+        if (!empty($request->picture)) {
+			$link = $request->picture->store('images');
 			// On récupère juste le nom du fichier :
 			$imgName = substr($link, strrpos($link, '/') + 1);
 
 			$product->picture()->create([
 				'link'  => $imgName,
-				'title' => $productRequest->title_image,
+				'title' => $request->title_image,
 			]);
 		}
+        return redirect()->route('products.index')->with('message', 'Produit ajouté !');
+    
 
-		return redirect()->route('products.index')->with('message', 'Produit ajouté !');
+        // $product = Product::create($productRequest->all());
+		// $product->sizes()->attach($productRequest->sizes);
+
+		// if (!empty($productRequest->picture)) {
+		// 	$link = $productRequest->picture->store('images');
+		// 	// On récupère juste le nom du fichier :
+		// 	$imgName = substr($link, strrpos($link, '/') + 1);
+
+		// 	$product->picture()->create([
+		// 		'link'  => $imgName,
+		// 		'title' => $productRequest->title_image,
+		// 	]);
+		// }
+
+		// return redirect()->route('products.index')->with('message', 'Produit ajouté !');
     }
 
     /**

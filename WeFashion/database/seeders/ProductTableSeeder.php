@@ -21,7 +21,7 @@ class ProductTableSeeder extends Seeder
     {
         Storage::disk('local')->delete(Storage::allFiles('images'));
         $ids = range(1, 15);
-        Product::factory(80)->create()->each(function ($product) use ($ids) {
+        Product::factory(5)->create()->each(function ($product) use ($ids) {
 			shuffle($ids);
             $categorie = Category::find(rand(1, 2));
             $product->category()->associate($categorie);

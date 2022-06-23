@@ -33,44 +33,47 @@
                                         
                                         <div class="form-group">
                                                 <label>Prix</label>
-                                                <input type="text" class="form-control" >
+                                                <input type="text" name="price"  value="{{old('price')}}" class="form-control" >
                                         </div>
                                         <div class="form-group">
                                             <label>Categorie</label>
-                                            <select class="form-control" >
+                                            <select name="category_id" class="form-control" >
                                                 <option value="">-----------</option>
-                                                <option value="1">Homme</option>
-                                                <option value="0">Femme</option>
+                                                @foreach ($categoryProduct as $category)
+                                                <option value="{{$category->id}}" {{(old('category_id')==$category->id)?'selected':''}}>{{$category->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                    
-                                        <div class="form-group">
-                                            <label>Adresse e-mail</label>
-                                            <input type="email" class="form-control" >
-                                        </div>
+                                        
 
                                         <div class="row">
                                             <div class="col-6">
-                                                <div class="form-group">
-                                                    <label>Visibilité </label>
-                                                    <select class="form-control" >
-                                                        <option value="">-----------</option>
-                                                        <option value="1">Homme</option>
-                                                        <option value="0">Femme</option>
-                                                    </select>
+                                                <div class="form-group">  
+                                                    Etat :<br>
+                                                    <label><input type="radio" name="status" value="Solde" {{(old('status')=="Solde")?'checked':''}}> Solde</label><br>
+                                                    <label><input type="radio" name="status" value="Standard" {{(old('status')=="Standard")?'checked':''}}> Standard</label>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    Status :<br>
-                                                    <label><input type="radio" name="status" value="Published" {{(old('status')=="Published")?'checked':''}}> Publier</label><br>
-                                                    <label><input type="radio" name="status" value="Unpublished" {{(old('status')=="Unpublished")?'checked':''}}> Dépublier</label>
+                                                    Visibilité :<br>
+                                                    <label><input type="radio" name="visibility" value="Published" {{(old('visibility')=="Published")?'checked':''}}> Publier</label><br>
+                                                    <label><input type="radio" name="visibility" value="Unpublished" {{(old('visibility')=="Unpublished")?'checked':''}}> Non Publier</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <br>
                                             Date de publication : <input type=date name="published_at" value="{{old('published_at')}}">
+                                        </div>
+                                        <div class="form-group">
+                                            Taille(s) :<br>
+                                            {{-- @dump($book->authors->first()->id) --}}
+                                            
+                                            @foreach ($sizes as $size)
+                                            <label><input type="checkbox" name="size[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', []))?'checked':''}}>  {{$size->name}}</label><br>
+                                            @endforeach
+                                            
                                         </div>
                                         
                                     
@@ -83,15 +86,18 @@
                                     Title de l'image : <input class="form-control" type="text" name="title_image" value="{{old('title_image')}}"><br>
                                     Ajouter l'image : <input class="form-control" type="file" name="picture">
                                     
-                                     <img src="" width="200"/>  
-                                    
+                                     <img src="" width="200"/>    
+
+
+                                     
                                 </div>
+                                
                             
                             </div>
                         </div>
                     <div> 
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                        <button type="button" wire:click="goToListUser()" class="btn btn-danger"><a href="{{ route('products.create') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
+                        <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+                        <button type="button" wire:click="goToListUser()" class="btn btn-danger"><a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
                     </div>
                 </div>     
             

@@ -1,8 +1,6 @@
 @extends("layouts.master")
 @section("contenu")
 
-   
-
         <div class="row p-4 pt-5">
             <form role="form">
                 <div  class="d-flex">

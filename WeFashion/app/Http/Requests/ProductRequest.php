@@ -28,11 +28,11 @@ class ProductRequest extends FormRequest
 		return [
 			'name'        => 'required|min:5',
 			'description' => 'required|string',
+            'price'        => 'float',
 			'category_id' => 'integer',
 			'sizes' 	  => 'required',
-			'sizes.*'   => 'integer',
 			'status'      => 'in:Published,Unpublished',
-			'picture'     => 'image|max:1000',
+			'picture'     => 'image|max:1000'
 		];
 	}
 
