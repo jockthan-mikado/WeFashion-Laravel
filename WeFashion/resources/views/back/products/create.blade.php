@@ -21,13 +21,13 @@
                                             
                                         <div class="form-group">
                                             <label>Nom</label>
-                                            <input type="text" class="form-control" >
+                                            <input type="text" name="name" value="{{old('name')}}" class="form-control" >
                                         </div>
                                            
                                       
                                         <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea name="description" class="form-control" ></textarea>
+                                                <textarea name="description" class="form-control" >{{old('description')}}</textarea>
                                         </div>
                                         
                                         
@@ -80,7 +80,7 @@
                                 </div>
                                 
                                 <div class="card-footer  col-md-4" >
-                                    Title de l'image : <input class="form-control" type="text" name="title_image" value=""><br>
+                                    Title de l'image : <input class="form-control" type="text" name="title_image" value="{{old('title_image')}}"><br>
                                     Ajouter l'image : <input class="form-control" type="file" name="picture">
                                     
                                      <img src="" width="200"/>  

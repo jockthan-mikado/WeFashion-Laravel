@@ -26,9 +26,12 @@ class ProductRequest extends FormRequest
 		// https://laravel.com/docs/9.x/validation#available-validation-rules
 
 		return [
-			'title'       => 'required|min:5',
+			'name'        => 'required|min:5',
 			'description' => 'required|string',
-			
+			'category_id' => 'integer',
+			'sizes' 	  => 'required',
+			'sizes.*'   => 'integer',
+			'status'      => 'in:Published,Unpublished',
 			'picture'     => 'image|max:1000',
 		];
 	}
@@ -38,8 +41,8 @@ class ProductRequest extends FormRequest
 		return [
 			'description.required' => 'La description du produit est obligatiore !',
 			'description.string'   => 'La description doit être un texte.',
-			'title.required'       => 'Le titre du livre est obligatiore !',
-			'title.min'            => 'Le titre doit faire 5 caractères minimum.',
+			'name.required'       => 'Le nom du produit est obligatiore !',
+			'name.min'            => 'Le nom doit faire 5 caractères minimum.',
 		];
 	}
 }

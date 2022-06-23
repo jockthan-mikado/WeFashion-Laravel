@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductAdminController extends Controller
 {
@@ -70,7 +71,7 @@ class ProductAdminController extends Controller
     {
         $product = Product::find($id);
 
-		return view('back.products.create', ['product' => $product]);
+		return view('back.products.show', ['product' => $product]);
     }
 
     /**
@@ -81,7 +82,18 @@ class ProductAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product       = Product::find($id);
+		$sizes    = Size::All();
+		$categoryProduct = Category::orderBy('name')->get(); // tri par nom => ne marche pas sur All()
+
+		$checkedSizes = [];
+		foreach ($product->sizes as $value) {
+			$checkedSizes[] = $value->id;
+		}
+
+		// return view('back.books.edit', ['book' => $book, 'authors' => $authors]);
+		return view('back.products.edit', compact('product', 'sizes', 'checkedSizes', 'categoryProduct'));
+
     }
 
     /**
@@ -91,9 +103,42 @@ class ProductAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $productRequest, Product $product)
     {
-        //
+        // Valider/vérifier les données
+		// $this->validate($request, [
+		// 	'title'       => 'required',
+		// 	'description' => 'required|string',
+		// 	// 'genre_id' => 'integer',
+		// 	'authors'   => 'required',
+		// 	'authors.*' => 'integer',
+		// ]);
+		// Ancienne image :
+		$oldImg = $product->picture->link;
+
+		// Mettre à jour les données
+		$product->update($productRequest->all());
+		$product->sizes()->sync($productRequest->sizes);
+
+		// on mets à jour le title de l'image (pas besoin de devoir renvoyer une image pour ça)
+		$product->picture()->update(['title' => $productRequest->title_image]);
+
+		// on mets à jour l'image si une nouvelle à été envoyée
+		if (!empty($productRequest->picture)) {
+			$link    = $productRequest->picture->store('images');
+			$imgName = substr($link, strrpos($link, '/') + 1);
+
+			Storage::delete('images/'.$oldImg);
+			// if (file_essxists(public_path('images/'.$oldImg))) {
+			// 	unlink(public_path('images/'.$oldImg));
+			// }
+
+			$product->picture()->update([
+				'link' => $imgName,
+			]);
+		}
+
+		return redirect()->route('products.index')->with('message', 'Modification avec Succès');
     }
 
     /**
@@ -102,8 +147,10 @@ class ProductAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->back()->with('message', 'Produit supprimé  avec Succès!');
     }
 }
