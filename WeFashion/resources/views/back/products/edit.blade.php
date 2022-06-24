@@ -57,8 +57,9 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     Etat :<br>
-                                                    <label><input type="radio" name="status" value="Solde" {{(old('status')=="Solde")?'checked':''}}> Solde</label><br>
-                                                    <label><input type="radio" name="status" value="Standard" {{(old('status')=="Standard")?'checked':''}}> Standard</label>
+
+                                                    <label><input type="radio" name="status" value="Solde" {{(old('status',$product->status)=="Solde")?'checked':''}}> Solde</label><br>
+                                                    <label><input type="radio" name="status" value="Standard" {{(old('status',$product->status)=="Standard")?'checked':''}}> Standard</label>
                                                     @error('status')
                                                     <span style="color:red">{{$message}}</span>
                                                     @enderror
@@ -67,8 +68,8 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     Visibilité :<br>
-                                                    <label><input type="radio" name="visibility" value="Published" {{(old('visibility')=="Published")?'checked':''}}> Publier</label><br>
-                                                    <label><input type="radio" name="visibility" value="Unpublished" {{(old('visibility')=="Unpublished")?'checked':''}}> Non Publier</label>
+                                                    <label><input type="radio" name="visibility" value="Published" {{old("visibility", $product->visibility)=="Published" ?'checked':''}}> Publier</label><br>
+                                                    <label><input type="radio" name="visibility" value="Unpublished" {{old("visibility" , $product->visibility)=="Unpublished" ?'checked':''}}> Non Publier</label>
                                                     @error('visibility')
                                                     <span style="color:red">{{$message}}</span>
                                                     @enderror
@@ -78,11 +79,18 @@
 
                                         <div class="form-group">
                                             Taille(s) :<br>
-                                            {{-- @dump($book->authors->first()->id) --}}
+                                            {{--
+                                            @foreach ($sizes as $id => $size)
+                                            <label><input class="form-check-input" type="checkbox" id="size{{$id}}" value="{{ $id }}" @checked (in_array( $id, old('sizes', ($checkedSizes)?? []) )) name="sizes[]" >{{$size->name}}</label>
+                                            <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', $checkedSizes))? 'checked':'' }} >  {{$size->name}}</label>
+                                            @endforeach--}}
 
                                             @foreach ($sizes as $size)
-                                            <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizess', $checkedSizes))? 'checked':'' }} >  {{$size->name}}</label><br>
+                                            {{-- @dump($size->id, $checkedSizes, old('sizes')) --}}
+                                            <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', $checkedSizes))? 'checked':'' }} >  {{$size->name}}</label>
                                             @endforeach
+
+
                                             @error('sizes')
                                             <span style="color:red">{{$message}}</span>
                                             @enderror
@@ -95,14 +103,14 @@
                                 </div>
 
                                 <div class="card-footer  col-md-4" >
-                                    Title de l'image : <input class="form-control" type="text" name="title_image" value="{{old('title_image', $product->picture->title)}}"><br>
+                                    Title de l'image : <input class="form-control" type="text" name="title_image" value="{{old('title_image', ($product->picture->title)?? '')}}"><br>
                                     Remplacer l'image : <input class="form-control" type="file" name="picture">
                                     @error('picture')
                                     <span style="color:red">{{$message}}</span>
                                     @enderror
                                     {{-- @dump(public_path('images/'.$book->picture->link)) --}}
                                     @if (file_exists(public_path('images/'.$product->picture->link)))
-                                    <img src="{{asset('images/'.$product->picture->link)}}" width="200">
+                                    <img src="{{asset('images/'.($product->picture->link)?? '')}}" width="200">
 
                                     @endif
 

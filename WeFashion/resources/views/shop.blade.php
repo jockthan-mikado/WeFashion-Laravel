@@ -20,7 +20,7 @@
         <link href="css/tshirt.css" rel="stylesheet">
 
 
-        
+
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
     </head>
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-sm-8 col-md-7 py-4">
                             <h4 class="text-white">About</h4>
-                            
+
                             <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
                         </div>
                         <div class="col-sm-4 offset-md-1 py-4">
@@ -62,7 +62,7 @@
                     </ul>
                 </div>
             </div>
-        
+
             <nav class="navbar navbar-expand-lg navbar-light bg-red">
                 <a class="navbar-brand" href="#"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Femmes</a>
                         </li>
-                       
+
                     </ul>
                 </div>
             </nav>
@@ -97,7 +97,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        
+
     </body>
 </html>
 

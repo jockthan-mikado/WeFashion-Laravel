@@ -19,7 +19,7 @@
 
                 <div class="col-6">
                     <div class="card mb-4 box-shadow">
-                        
+
                         <img class="card-img-top"  src="{{asset('images/9065437707_2_1_1.jpg') }}" alt="Card image cap">
 
                     </div>

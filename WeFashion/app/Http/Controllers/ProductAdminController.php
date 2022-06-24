@@ -18,7 +18,7 @@ class ProductAdminController extends Controller
     public function index()
     {
         //on recupère tous les livres avec une pagination de 10 livres en fichage par page
-        $products= Product::paginate(15);
+        $products= Product::latest()->paginate(15);
         return view('back.products.index',['products'=>$products]);
     }
 
@@ -90,11 +90,11 @@ class ProductAdminController extends Controller
 		$sizes = Size::All();
         $categoryProduct = Category::orderBy('name')->get();
 
-		$checkedSizes = [];
+        $checkedSizes = [];
 		foreach ($product->sizes as $value) {
 			$checkedSizes[] = $value->id;
 		}
-
+        //dd($product->visibility);
 
 		return view('back.products.edit', compact('product', 'sizes', 'checkedSizes', 'categoryProduct'));
 

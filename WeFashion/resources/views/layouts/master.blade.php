@@ -20,7 +20,7 @@
     <link href="css/tshirt.css" rel="stylesheet">
 
 
-    
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
 </head>
@@ -29,17 +29,17 @@
 
     <header>
         <div class="collapse bg-dark" id="navbarHeader">
-            
+
         </div>
         <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex ">
-                    
+
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <strong>WeFashion</strong>
                     </a>
                 </div>
-                    
+
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="btn btn-primary btn-block" href="{{ route('logout') }}"
@@ -55,18 +55,26 @@
                 </ul>
             </div>
         </div>
-    
+
         <nav class="navbar navbar-expand-lg navbar-light bg-red">
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Produit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categorie</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
     <div class="content-wrapper">
-
 
         <div class="content">
             <div class="container-fluid">
@@ -78,7 +86,7 @@
 
     <!-- Control Sidebar -->
     <!--On fait appelle au composant sidebar.php -->
-   
+
     <!-- /.control-sidebar -->
 
     <footer class="main-footer">

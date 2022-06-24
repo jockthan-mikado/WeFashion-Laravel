@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id')->nullable();
 			$table->string('link', 255);
-			$table->string('title', 255);
+			$table->string('title', 255)->nullable();
             $table->timestamps();
         });
     }

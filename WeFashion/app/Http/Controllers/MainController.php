@@ -15,17 +15,13 @@ class MainController extends Controller
     //nous disons à laravel que le thème de notre pagination est de bootstrap
     protected $paginationTheme = "bootstrap";
     public function index(){
-        $products = Product::paginate(9);
+        $products = Product::latest()->paginate(6);
+        
         //dd($produits);
         return view('shop.index', ['products'=> $products]);
+
     }
-    // public function dashbord(){
-    //     $products = Product::paginate(15);
-    //     return view('back.products.index' , ['products'=> $products]);
-    // }
-    // public function formProduct(){
-    //     return view('back.products.create');
-    // }
+
     public function produit(Request $request){
 
         //on recupère un produit en fonction de la valeur passée en paramètres
@@ -34,4 +30,5 @@ class MainController extends Controller
 
         return view('shop.product', ['product'=>$product]);
     }
+
 }

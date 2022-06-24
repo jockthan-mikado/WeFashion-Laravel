@@ -1,5 +1,18 @@
 
 @extends("layouts.master")
+
+@section('barmenu')
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Produit</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Categotie</a>
+        </li>
+    </ul>
+
+@endsection
+
 @section("contenu")
     {{--On affiche le message d'erreur grace à la session--}}
     @if(session('message'))

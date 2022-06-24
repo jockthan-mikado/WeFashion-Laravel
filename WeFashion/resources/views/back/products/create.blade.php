@@ -59,7 +59,7 @@
                                                     <label><input type="radio" name="status" value="Solde" {{(old('status')=="Solde")?'checked':''}}> Solde</label><br>
                                                     <label><input type="radio" name="status" value="Standard" {{(old('status')=="Standard")?'checked':''}}> Standard</label>
                                                     @error('status')
-                                                    <span style="color:red">{{$message}}</span>
+                                                    <span class="text-danger">{{$message}}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -69,7 +69,7 @@
                                                     <label><input type="radio" name="visibility" value="Published" {{(old('visibility')=="Published")?'checked':''}}> Publier</label><br>
                                                     <label><input type="radio" name="visibility" value="Unpublished" {{(old('visibility')=="Unpublished")?'checked':''}}> Non Publier</label>
                                                     @error('visibility')
-                                                    <span style="color:red">{{$message}}</span>
+                                                    <span class="text-danger">{{$message}}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                             <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', []))?'checked':''}}>  {{$size->name}}</label><br>
                                             @endforeach
                                             @error('sizes')
-                                            <span style="color:red">{{$message}}</span>
+                                            <span class="text-danger">{{$message}}</span>
                                             @enderror
                                         </div>
 

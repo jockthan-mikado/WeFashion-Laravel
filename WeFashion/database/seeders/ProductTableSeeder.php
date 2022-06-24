@@ -26,13 +26,13 @@ class ProductTableSeeder extends Seeder
 			shuffle($ids);
             $categorie = Category::find(rand(1, 2));
             $product->category()->associate($categorie);
-            $product->sizes()->attach(array_slice($ids, 0, rand(1, 3)));
+            $product->sizes()->attach(array_slice($ids, 0, rand(1, 6)));
             $product->save();
             $folder = $product->category_id == 1 ? 'hommes' : 'femmes';
 
             $link = Str::random(12). '.jpg';
 
-            $file = file_get_contents(public_path('image_origin/' . $folder . '/' . rand(1, 10) . '.jpg'));
+            $file = file_get_contents(public_path('image_origin\\' . $folder . '\\' . rand(1, 10) . '.jpg'));
             Storage::disk('local')->put('images/'.$link, $file);
 			$product->picture()->create([
 				'title' => 'Default', // valeur par défaut
