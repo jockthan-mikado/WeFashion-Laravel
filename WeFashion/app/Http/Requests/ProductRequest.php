@@ -24,13 +24,12 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-			'name'       => 'required|min:5', //On exige l'obligation de la saisie du champ et avec 5 caractères au minimum
+			'name'       => 'required|between:5,100', //On exige l'obligation de la saisie du champ et avec 5 caractères au minimum
 			'description' => 'required|string',//On exige l'obligation de la saisie du champ avec des chaines caractères (string)
-			'price'        => 'float',
+			'price'        => 'required',
 			'category_id'    => 'integer',//On dit un champ entier
-			'sizes'     => 'required',//On exige l'obligation de la saisie du champ
-			'sizes.*'   => 'integer', //On dit un tableau des entiers
-			'visibility'      => 'in:Published,Unpublished', //On dit on attend comme données in:Published,Unpublished 
+			'sizes.*'   => 'integer|required', //On dit un tableau des entiers
+			'visibility'      => 'in:Published,Unpublished', //On dit on attend comme données in:Published,Unpublished
 			'status'      => 'in:Solde,Standard',
 			'picture'     => 'image|max:1000', // On attend une image et la taille maximale 1000ko
 		];

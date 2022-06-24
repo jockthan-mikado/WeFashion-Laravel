@@ -3,14 +3,14 @@
 @section("contenu")
     {{--On affiche le message d'erreur grace à la session--}}
     @if(session('message'))
-        
+
     {{session('message')}}
-        
+
     @endif
 
     {{$products->links()}}{{--c'est le lien de la pagination--}}
            {{-- p-4   permet d'ajouter une marge et pt-5 permet d'ajouter une marge en haut--}}
-   
+
 
         {{-- p-4   permet d'ajouter une marge et pt-5 permet d'ajouter une marge en haut--}}
     <div class="row p-4 pt-5">
@@ -50,43 +50,43 @@
                         </thead>
                         <tbody>
                             @foreach ( $products as $product )
-                                
-                        
+
+
                             <tr>
                                 {{--class="text-center" permet de centrer le contenu--}}
                                 <td>
                                     {{$product->name}}
-                                        
-                                    
+
+
                                 </td>
                                 <td>
-                                    {{ $product->category_id }}   
+                                    {{ $product->category->name }}
                                 </td>
-                                
-                                <td > 
-                                    {{ $product->price }} 
+
+                                <td >
+                                    {{ $product->price }}
                                 </td>
                                 {{--diffForHumans() permet de formater la date --}}
                                 <td class="text-center"><span class="tag tag-success">{{  $product->status }}</span></td>
                                 <td class="text-center align-items-center">
-                                    
+
                                     {{--btn btn-link  permet de faire un bouton avec une couleur--}}
                                     {{--far fa-edit  permet de mettre un icon de modification et far fa-trash-alt un icon de suppresion--}}
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex  justify-content-center">
                                         <button class="btn btn-link "><a href="{{ route('products.edit', $product->id)}}"><i class="far fa-edit"></i></a></button>
                                         <form action="{{route('products.destroy', $product->id)}}"method="post">
                                             @csrf
                                           @method('DELETE')
-                                          
+
                                           <button  type="submit" class="btn btn-link "><i class="far fa-trash-alt"></i></button>
-              
+
                                       </form>
                                     </div>
-                                    
+
                                 </td>
-                                
+
                             </tr>
-                        
+
                             @endforeach
                         </tbody>
                     </table>
@@ -96,11 +96,11 @@
                     {{--class="float-right" permet de mettre la pagination à droite du formulaire  --}}
                     <div class="float-right">
                         {{--Nous definissons la pagination dans nos données recuperées--}}
-                        
+
                     </div>
                 </div>
             </div>
-        
+
         </div>
     </div>
     {{$products->links()}}
