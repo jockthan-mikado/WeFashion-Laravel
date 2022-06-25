@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
 			'category_id'    => 'integer',//On dit un champ entier
 			'sizes'   => 'required|min:1',
 			'sizes.*'   => 'integer|required', //On dit un tableau des entiers
-			'visibility'      => 'in:Published,Unpublished', //On dit on attend comme données in:Published,Unpublished
+			'visibility'      => 'in:Publié,Non-Publié', //On dit on attend comme données in:Published,Unpublished
 			'status'      => 'in:Solde,Standard',
 			'picture'     => 'image|max:1000|required', // On attend une image et la taille maximale 1000ko
 		];
@@ -42,8 +42,8 @@ class ProductRequest extends FormRequest
 			'description.string'   => 'La description doit être un texte.',
 			'name.required'       => 'Le nom du produit est obligatiore !',
 			'name.min'            => 'Le nom doit faire 5 caractères minimum et 100 caractères maximum.',
-            'sizes.required'              => 'La taille du produit est obligatiore !',
-            'picture.required'             => 'La photo du produit est obligatiore !',
+            'sizes.required'      => 'La taille du produit est obligatiore !',
+            'picture.required'    => 'La photo du produit est obligatiore !',
 		];
     }
 }

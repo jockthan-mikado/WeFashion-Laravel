@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
 
-                <div class="card-header bg-primary d-flex align-items-center">
+                <div class="card-headerbtn btn-info d-flex align-items-center">
 
                     <h3 class="card-title flex-grow-1"><i class="fas fa-users fa-2x"></i>Liste des Produits</h3>
 
@@ -27,8 +27,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="card-body table-responsive p-0 table-stripeD" style="height: 300px;">
+                
+                <div class="card-body table-responsive p-0 table-stripeD" style="height: 500px;">
                     <table class="table table-head-fixed text-nowrap">
                         <thead>
                             <tr>
@@ -55,12 +55,12 @@
                                 <td class="text-center"><span class="tag tag-success">{{  $product->status }}</span></td>
                                 <td class="text-center align-items-center">
                                     <div class="d-flex  justify-content-center">
-                                        <button class="btn btn-link "><a href="{{ route('products.edit', $product->id)}}"><i class="far fa-edit"></i></a></button>
+                                        <a href="{{ route('showProduct',$product->id) }}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+                                        <button class="btn btn-outline-success"><a href="{{ route('products.edit', $product->id)}}"><i class="far fa-edit"></i></a></button>
                                         <form action="{{route('products.destroy', $product->id)}}"method="post">
                                             @csrf
                                           @method('DELETE')
-
-                                          <button  type="submit" class="btn btn-link "><i class="far fa-trash-alt"></i></button>
+                                          <button  type="submit" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
                                       </form>
                                     </div>
                                 </td>

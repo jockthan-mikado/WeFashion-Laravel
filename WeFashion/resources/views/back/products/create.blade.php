@@ -68,25 +68,13 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     Visibilité :<br>
-                                                    <label><input type="radio" name="visibility" value="Published" {{(old('visibility')=="Published")?'checked':''}}> Publier</label><br>
-                                                    <label><input type="radio" name="visibility" value="Unpublished" {{(old('visibility')=="Unpublished")?'checked':''}}> Non Publier</label>
+                                                    <label><input type="radio" name="visibility" value="Publié" {{(old('visibility')=="Publié")?'checked':''}}> Publier</label><br>
+                                                    <label><input type="radio" name="visibility" value="Non-Publié" {{(old('visibility')=="Non-Publié")?'checked':''}}> Non Publier</label>
                                                     @error('visibility')
                                                     <span class="text-danger">{{$message}}</span>
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            Taille(s) :<br>
-                                            {{-- @dump($book->authors->first()->id) --}}
-
-                                            @foreach ($sizes as $size)
-                                            <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', []))?'checked':''}}>  {{$size->name}}</label><br>
-                                            @endforeach
-                                            @error('sizes')
-                                            <span class="text-danger">{{$message}}</span>
-                                            @enderror
                                         </div>
 
 
@@ -101,11 +89,22 @@
                                     @error('picture')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
+                                    <div class="form-group">
+                                        Taille(s) :<br>
+                                        {{-- @dump($book->authors->first()->id) --}}
 
+                                        @foreach ($sizes as $size)
+                                        <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', []))?'checked':''}}>  {{$size->name}}</label><br>
+                                        @endforeach
+                                        @error('sizes')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
 
 
 
                                 </div>
+
 
 
                             </div>
