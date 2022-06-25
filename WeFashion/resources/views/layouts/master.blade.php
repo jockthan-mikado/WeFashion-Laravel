@@ -38,6 +38,15 @@
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <strong>WeFashion</strong>
                     </a>
+                    <div class="navbar-nav d-flex">
+                        <div class="nav-item">
+                            <a class="nav-link" href="{{url('/')}}">Produit</a>
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('solde')}}">Categorie</a>
+                        </div>
+                       
+                    </div >
                 </div>
 
                 <ul class="navbar-nav">

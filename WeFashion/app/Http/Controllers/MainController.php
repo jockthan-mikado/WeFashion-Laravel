@@ -16,7 +16,7 @@ class MainController extends Controller
     protected $paginationTheme = "bootstrap";
     public function index(){
         $products = Product::latest()->paginate(6);
-        
+
         //dd($produits);
         return view('shop.index', ['products'=> $products]);
 
