@@ -10,7 +10,7 @@
     {{session('message')}}
 
     @endif
-    {{$products->links()}}
+
     <div class="row p-4 pt-5">
         <div class="col-12">
             <div class="card">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card-body table-responsive p-0 table-stripeD" style="height: 500px;">
                     <table class="table table-head-fixed text-nowrap">
                         <thead>

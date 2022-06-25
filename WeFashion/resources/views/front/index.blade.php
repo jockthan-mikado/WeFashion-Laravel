@@ -6,7 +6,7 @@
 @section('content')
     <h1>Tous les produits</h1>
 
-    {{$products->links()}}
+
     <div class="album py-5 bg-light">
         <div class="container">
 
