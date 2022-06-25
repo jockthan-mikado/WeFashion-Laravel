@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->float('price');
-            $table->enum('visibility', ['Published', 'Unpublished'])->default('Unpublished');
+            $table->enum('visibility', ['Publié', 'Non-Publié'])->default('Non-Publié');
             $table->enum('status', ['Solde', 'Standard'])->default('Standard');
-            
+            $table->string('reference', 16)->nullable();
+
             $table->timestamps();
         });
     }
