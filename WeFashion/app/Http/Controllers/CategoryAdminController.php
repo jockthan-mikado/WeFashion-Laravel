@@ -16,7 +16,7 @@ class CategoryAdminController extends Controller
     public function index()
     {
         $categories= Category::paginate(15);
-        return view('back.products.index',['categories'=>$categories]);
+        return view('back.Category.index',['categories'=>$categories]);
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryAdminController extends Controller
          //on recupère toutes les tailles dans la table sizes
          $categories    = Category::All();
 
-         return view('back.products.create', compact('categories', 'categoryProduct'));
+         return view('back.Category.create', compact('categories'));
     }
 
     /**
@@ -40,8 +40,8 @@ class CategoryAdminController extends Controller
      */
     public function store(CategoryRequest $categoryResquest)
     {
-        $product =Category::create($categoryResquest->validated());  //on crée un book en fonction du formulaire
-        return redirect()->route('products.index')->with('message','Produit ajouté avec succès !');
+        Category::create($categoryResquest->validated());  //on crée un book en fonction du formulaire
+        return redirect()->route('categories.index')->with('message','Produit ajouté avec succès !');
     }
 
     /**
@@ -54,7 +54,7 @@ class CategoryAdminController extends Controller
     {
         $category = Category::find($id);
         //on renvoie la vue  du show
-        return view('back.products.show',['category'=>$category]);
+        return view('back.Category.show',['category'=>$category]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryAdminController extends Controller
     {
         $category   = Category::find($id);
 
-        return view('back.products.edit', compact('category'));
+        return view('back.Category.edit', compact('category'));
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoryAdminController extends Controller
 
         $category->update($categoryResquest->all());
 
-        return redirect()->route('products.index')->with('message', 'Modification avec succès');
+        return redirect()->route('Category.index')->with('message', 'Modification avec succès');
     }
 
     /**
@@ -95,6 +95,6 @@ class CategoryAdminController extends Controller
     {
         $category->delete();
 
-        return redirect()->back()->with('message', 'Produit supprimé avec succès!');
+        return redirect()->back()->with('message', 'Category supprimé avec succès!');
     }
 }

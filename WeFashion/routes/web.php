@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductAdminController;
-
+use App\Http\Controllers\CategoryAdminController;
 
 
 Route::get('/', [ MainController::class, 'index' ] );
@@ -29,6 +29,8 @@ Auth::routes();
 
 
 Route::resource('admin/products', ProductAdminController::class)->middleware('auth');
+
+Route::resource('admin/categories', CategoryAdminController::class)->middleware('auth');
 
 
 
