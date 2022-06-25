@@ -101,8 +101,9 @@
 
     <!-- Copyright -->
     <div class="text-white bg-dark text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2022 Copyright:
-        <a class="text-reset fw-bold" href="#">MIKADO_Entreprise@jmk.com</a>
+        © 2022 Copyright
+        <strong style="color: #66EB9A">WeFashion</strong>
+
     </div>
     <!-- Copyright -->
 </footer>

@@ -5,7 +5,7 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex ">
-                    <a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Se connecter</a>
+                    {{--<a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Se connecter</a>--}}
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <strong style="color: #66EB9A">WeFashion</strong>
                     </a>
@@ -13,7 +13,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Panier</a>
+                        <a class="nav-link " href="{{ route('products.index') }}"><i class="fa fa-user"></i> Connexion</a>
                     </li>
                 </ul>
             </div>

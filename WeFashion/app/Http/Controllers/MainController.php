@@ -44,7 +44,7 @@ class MainController extends Controller
 
         $category = Category::find($id);
 
-        $products = $category->products->paginate($this->paginate);
+        $products = Product::where('category_id', $id)->paginate($this->paginate);
 
         return view('front.category', ['products' => $products, 'category' => $category]);
     }

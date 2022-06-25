@@ -4,9 +4,8 @@
 @endsection
 
 @section('content')
-    <h1>Tous les produits en solde: </h1>
-
-    {{$products->links()}}
+    <h1 class="jumbotron-heading" style="text-align: center;">Tous les produits en solde </h1>
+    {{--$products->links()--}}
     <div class="album py-5 bg-light">
         <div class="container">
 
@@ -19,7 +18,7 @@
                         {{--<img src="{{asset('images/'.$book->picture->link)}}" alt="{{$book->picture->title}}">--}}
 
                         <div class="card-body">
-                            <p class="card-text">{{$product->name}} <br>{{$product->description}}</p>
+                            <p class="card-text">{{$product->name}} <br>{{ \Illuminate\Support\Str::limit($product->description,150)}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="price"> {{ number_format ($product->price,2)}} € </span>
                                 <a href="{{ route('showProduct',$product->id) }}"class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i></a>
@@ -34,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            {{ $products->links() }}
+            @include('partials.pagination')
         </div>
     </div>
 @endsection
