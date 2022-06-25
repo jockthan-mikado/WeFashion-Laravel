@@ -1,6 +1,8 @@
 @extends("layouts.master")
-@section("contenu")
-
+@section("content")
+@section('barmenu')
+    @include('partials.menuadmin')
+@endsection
 
 <form action="{{ route('products.store') }}" method='POST' enctype="multipart/form-data">
     @csrf

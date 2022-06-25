@@ -1,7 +1,9 @@
 @extends("layouts.master")
-@section("contenu")
+@section("content")
 
-
+@section('barmenu')
+    @include('partials.menuadmin')
+@endsection
 <form action="{{ route('products.update', $product->id) }}" method='POST' enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -124,7 +126,7 @@
                         </div>
                     <div>
                         <button type="submit" class="btn btn-primary">Ajouter le produit</button>
-                        <button type="button" wire:click="goToListUser()" class="btn btn-danger"><a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
+                        <button type="button"  class="btn btn-outline-info"><a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Retourner à la liste des produits</a></button>
                     </div>
                 </div>
 
