@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryAdminController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoryAdminController extends Controller
      */
     public function index()
     {
-        //
+        $categories= Category::paginate(15);
+        return view('back.products.index',['categories'=>$categories]);
     }
 
     /**
@@ -23,18 +26,22 @@ class CategoryAdminController extends Controller
      */
     public function create()
     {
-        //
+         //on recupère toutes les tailles dans la table sizes
+         $categories    = Category::All();
+
+         return view('back.products.create', compact('categories', 'categoryProduct'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\CategoryRequest  $categoryResquest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $categoryResquest)
     {
-        //
+        $product =Category::create($categoryResquest->validated());  //on crée un book en fonction du formulaire
+        return redirect()->route('products.index')->with('message','Produit ajouté avec succès !');
     }
 
     /**
@@ -45,7 +52,9 @@ class CategoryAdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        //on renvoie la vue  du show
+        return view('back.products.show',['category'=>$category]);
     }
 
     /**
@@ -56,7 +65,9 @@ class CategoryAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category   = Category::find($id);
+
+        return view('back.products.edit', compact('category'));
     }
 
     /**
@@ -66,9 +77,12 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $categoryResquest, Category $category)
     {
-        //
+
+        $category->update($categoryResquest->all());
+
+        return redirect()->route('products.index')->with('message', 'Modification avec succès');
     }
 
     /**
@@ -77,8 +91,10 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->back()->with('message', 'Produit supprimé avec succès!');
     }
 }
