@@ -18,6 +18,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/product/{id}',[MainController::class, 'show'])->name('showProduct')->where('id', '[0-9]+');
 
+
+
 Route::get('solde', [MainController::class, 'showProductBySolde']);
 
 Route::get('categorie/{id}', [MainController::class, 'showProductByCategorie'])->where(['id' => '[0-9]+']);

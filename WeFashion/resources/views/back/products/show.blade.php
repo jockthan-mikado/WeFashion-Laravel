@@ -1,30 +1,36 @@
 @extends('layouts.master')
-
+@section('barmenu')
+    @include('partials.menuadmin')
+@endsection
 @section('content')
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <a href="#" class="thumbnail">
-                <img width="200" src="{{asset('imagesss/'.$product->picture->link)}}" alt="{{$product->picture->title}}">
-            </a>
-        </div>
-        <div class="col-12 col-md-6 my-4 my-md-0">
-            <p class="product-title"><h2>{{$product->title}}</h2></p><br>
 
-            <div>
-                <p>{{ $product->description }}</p>
-                <p><strong>Référence produit : </strong>{{ $product->reference }} </p>
+<<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+                <img  src="{{asset('images/'.$product->picture->link)}}" alt="{{$product->picture->title}}">
             </div>
+        </div>
+        <div class="col-6">
+            <h1 class="jumbotron-heading">{{$product->name}}</h1>
+            <h5>  {{ number_format ($product->price,2)}} €</h5>
+            <p class="lead text-muted">{{$product->description}}</p>
 
+            <p><strong>Référence produit : </strong>{{ $product->reference }} </p>
+            <hr>
+            <label for="size"> taille</label>
 
-            <p><strong>Price : </strong>{{ $product->price }} € TTC</p>
+            Taille(s) :<br>
 
-            <strong>Taille :  </strong><select class="custom-select my-4">
-                <option selected disabled>{{ $product->size }}</option>
+            @foreach ($sizes as $size)
+            <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', $checkedSizes))? 'checked':'' }} >  {{$size->name}}</label><br>
+            @endforeach
+            {{-- <select class="custom-select my-4">
+                @foreach ($sizes as $size)
+                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                @endforeach
+            </select> --}}
 
-
-            </select><br><br>
-
-            <button type="button" class="btn btn-primary">Ajouter au panier</button>
         </div>
     </div>
 @endsection

@@ -4,6 +4,7 @@
 @section('barmenu')
     @include('partials.menuadmin')
 @endsection
+
 <form action="{{ route('products.update', $product->id) }}" method='POST' enctype="multipart/form-data">
     @csrf
     @method('PUT')

@@ -1,8 +1,10 @@
 
 @extends("layouts.master")
+
 @section('barmenu')
     @include('partials.menuadmin')
 @endsection
+
 @section("content")
 
     @if(session('message'))
@@ -55,7 +57,7 @@
                                 <td class="text-center"><span class="tag tag-success">{{  $product->status }}</span></td>
                                 <td class="text-center align-items-center">
                                     <div class="d-flex  justify-content-center">
-                                        <a href="{{ route('showProduct',$product->id) }}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-info" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
                                         <button class="btn btn-outline-success"><a href="{{ route('products.edit', $product->id)}}"><i class="far fa-edit"></i></a></button>
                                         <form action="{{route('products.destroy', $product->id)}}"method="post">
                                             @csrf

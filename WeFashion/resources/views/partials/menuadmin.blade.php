@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <div class="navbar-nav d-flex">
                 <div class="nav-item">
-                    <a class="nav-link text-white bg-dark " href="{{url('/')}}">Produit</a>
+                    <a class="nav-link text-white bg-dark " href="{{ route('products.index') }}">Produit</a>
                 </div>
                 <li class="nav-item">
                     <a class="nav-link text-white bg-dark " href="{{url('solde')}}">Categorie</a>

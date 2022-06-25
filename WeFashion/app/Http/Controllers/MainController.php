@@ -49,6 +49,7 @@ class MainController extends Controller
         return view('front.category', ['products' => $products, 'category' => $category]);
     }
 
+
     public function show(Request $request){
 
         //on recupère un produit en fonction de la valeur passée en paramètres

@@ -74,8 +74,13 @@ class ProductAdminController extends Controller
     {
         //pour recuperer les infos d'un livre dont l'id est passé en paramètre
         $product = Product::find($id);
+        $sizes = Size::All();
+        $checkedSizes = [];
+		foreach ($product->sizes as $value) {
+			$checkedSizes[] = $value->id;
+		}
         //on renvoie la vue  du show
-        return view('back.products.show',['product'=>$product]);
+        return view('back.products.show',['product'=>$product ,'sizes'=> $sizes,'checkedSizes'=>$checkedSizes]);
     }
 
     /**
