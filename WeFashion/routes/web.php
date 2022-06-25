@@ -8,10 +8,7 @@ use App\Http\Controllers\ProductAdminController;
 
 Route::get('/', [ MainController::class, 'index' ] );
 
-// Route::controller(ProductController::class)->prefix('product')->group(function () {
-// 	Route::get('/', 'index')->name('product.list');
-// 	Route::get('/{product}', 'show')->name('show.product')->where('product', '[0-9]+');
-// });
+
 
 
 
@@ -19,16 +16,20 @@ Route::get('/', [ MainController::class, 'index' ] );
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/produit/{id}',[MainController::class, 'produit'])->name('voir_produit')->where('id', '[0-9]+');
+Route::get('/product/{id}',[MainController::class, 'show'])->name('showProduct')->where('id', '[0-9]+');
+
+Route::get('solde', [MainController::class, 'showProductBySolde']);
+
+Route::get('categorie/{id}', [MainController::class, 'showProductByCategorie'])->where(['id' => '[0-9]+']);
 
 Auth::routes();
 
-//Route::get('/admin', [MainController::class,'dashbord'])->middleware('auth')->name('admin');
+
 
 Route::resource('admin/products', ProductAdminController::class)->middleware('auth');
 
-//Route::get('/admin/addProduct', [MainController::class,'formProduct'])->middleware('auth')->name('admin.product');
-       
 
-    
+
+
+
 
