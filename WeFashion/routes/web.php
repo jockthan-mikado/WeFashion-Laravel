@@ -6,12 +6,7 @@ use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\CategoryAdminController;
 
 
-Route::get('/', [ MainController::class, 'index' ] );
-
-
-
-
-
+Route::get('/', [ MainController::class, 'index' ] )->name('accueil');;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

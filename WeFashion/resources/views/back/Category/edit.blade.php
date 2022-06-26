@@ -1,43 +1,34 @@
-@extends("layouts.master")
+@extends("layouts.admin")
+
 @section("content")
-
-@section('barmenu')
+<div class="row">
     @include('partials.menuadmin')
-@endsection
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Editer la catégorie</h1>
 
-<form action="{{ route('categories.update', $category->id) }}" method='POST' enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-        <div class="row p-4 pt-5">
-
-                <div  class="d-flex">
-                    <div class="col-md-10">
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-user-plus fa-2x"></i> Formulaire  de modification de la categorie</h3>
-                            </div>
-                                <div class="d-flex">
-                                    <div class="card-body">
-                                        <div class="row">
-
-                                        <div class="form-group">
-                                            <label>Nom</label>
-                                            <input type="text" name="name" value="{{old('name', $category->name)}}" class="form-control" >
-                                            @error('name')
-                                            <span style="color:red">{{$message}}</span>
-                                            @enderror
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">Modifier la categorie</button>
-                        <button type="button"  class="btn btn-outline-info"><a href="{{ route('categories.index') }}"  class="btn btn-outline-info align-items-center" >Retourner à la liste des categories</a></button>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <a href="{{ route('categories.index') }}"><button class="btn btn-sm btn-outline-secondary">Lister les catégories</button></a>
                     </div>
                 </div>
-        </div>
-    </form>
+            </div>
+            <form action="{{ route('categories.update', $category->id) }}" method='POST' enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nom">Nom de la catégorie</label>
+                        <input type="text" name="name" value="{{old('name', $category->name)}}" class="form-control" >
+                        @error('name')
+                            <span style="color:red">{{$message}}</span>
+                        @enderror
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </form>
+        </main>
+</div>
 @endsection
