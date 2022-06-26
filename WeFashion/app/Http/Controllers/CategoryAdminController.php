@@ -51,6 +51,8 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //function to display a category
     public function show($id)
     {
         $category = Category::find($id);
@@ -78,6 +80,7 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //category data modification function
     public function update(CategoryRequest $categoryResquest, Category $category)
     {
 
@@ -92,6 +95,7 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //delete category function
     public function destroy(Category $category)
     {
         $category->delete();
