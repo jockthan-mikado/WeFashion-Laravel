@@ -3,7 +3,7 @@
 
 @section("content")
     <div class="row">
-        
+
         @include('partials.menuadmin')
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -41,7 +41,7 @@
                         <tr>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->price }}</td>
+                            <td>{{ number_format ($product->price,2)}} €</td>
                             <td>{{ $product->status }}</td>
                             <td class="d-flex  justify-content-center">
                                         <a href="{{ route('products.show', $product->id) }}"><button class="btn btn-sm btn-primary">

@@ -5,8 +5,8 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex ">
-                    {{--<a href="{{ route('products.index') }}"  class=" navbar-brand d-flex align-items-center" >Se connecter</a>--}}
-                    <a href="#" class="navbar-brand d-flex align-items-center">
+                    {{--<a href=""  class=" navbar-brand d-flex align-items-center" >Se connecter</a>--}}
+                    <a href="{{ route('accueil') }}" class="navbar-brand d-flex align-items-center">
                         <strong style="color: #66EB9A">WeFashion</strong>
                     </a>
                 </div>
@@ -27,14 +27,14 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('/')}}">Accueil</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{url('/')}}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('solde')}}">Solde</a>
+                    <a class="nav-link {{ request()->is('solde') ? 'active' : '' }}" href="{{url('solde')}}">Solde</a>
                 </li>
                 @forelse($categories as $id => $name)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('categorie', $id)}}">{{$name}}</a>
+                    <a class="nav-link {{ request()->is('categorie/'.$id.'') ? 'active' : '' }}" href="{{url('categorie', $id)}}">{{$name}}</a>
                 </li>
                 @empty
                     <li class="nav-item">Aucun genre pour l'instant</li>

@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <<div class="container">
+    <div class="container">
         <div class="row justify-content-between">
             <div class="col-6">
                 <div class="card mb-4 box-shadow">
@@ -15,12 +15,12 @@
                 <h1 class="jumbotron-heading">{{$product->name}}</h1>
                 <h5>  {{ number_format ($product->price,2)}} €</h5>
                 <p class="lead text-muted">{{$product->description}}</p>
-                <hr>
-                <label for="size">Choisissez votre taille</label>
+                <p><strong>Référence produit : </strong>{{ $product->reference }} </p>
+                <label for="size"> Taille disponible </label>
 
                 <select class="custom-select my-4">
                     @foreach ($sizes as $size)
-                    <option value="{{ $size->id }}">{{ $size->name }}</option>
+                    <option value="{{ $size['id'] }}">{{ $size['name'] }}</option>
                     @endforeach
                 </select>
 
