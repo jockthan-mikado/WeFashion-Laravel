@@ -17,7 +17,7 @@ class ProductAdminController extends Controller
      */
     public function index()
     {
-        //on recupère tous les livres avec une pagination de 10 livres en fichage par page
+        //we retrieve all the products with a pagination of 15 products per page
         $products= Product::latest()->paginate(15);
         return view('back.products.index',['products'=>$products]);
     }
@@ -31,9 +31,9 @@ class ProductAdminController extends Controller
     {
         //on recupère toutes les tailles dans la table sizes
         $sizes    = Size::All();
-        //On recupère tous les genres dans la table genre par ordre alphabétique
+
 		$categoryProduct = Category::orderBy('name')->get();
-        //on retourne ses informations recupérées dans le fichier create.blade.php
+        //we return the information retrieved in the create.blade.php file
 		return view('back.products.create', compact('sizes', 'categoryProduct'));
     }
 
@@ -45,21 +45,19 @@ class ProductAdminController extends Controller
      */
     public function store(ProductRequest $productResquest)
 
-    {
-        $product =Product::create($productResquest->validated());  //on crée un book en fonction du formulaire
-        $product->sizes()->attach($productResquest->sizes); //on fait une une laison d'un ou des auteurs qui sont en relation avec la table book qui vient d'etre créer grace aux données du formulaire
-        if (!empty($productResquest->picture)) { //on verifie si une image n'est pas vide dans le formulaire
-            //Storage::put()
-            $link =$productResquest->picture->store('images');//il crée un dossier images en plus
-            //on extrait le nom de l'image dans le le chemin $link en utilisant deux fonctions php
-            //la fonction strrpos()  nous renvoie la position de l'occurrence d'une chaine .dans notre exemple on cherche la position de '/' dans la chaine $link et on fait plus(+) 1
-            //la fonction substr () : Renvoie une partie d'une chaîne. dans notre cas la fonction substr supprime un  nombre de caracters au debut de la chaine $link . c'est nombre provient de ce qui est retourné par la fonction strrpos()
+    {   //we create a product based on the data form in the form
+        $product =Product::create($productResquest->validated());
+        $product->sizes()->attach($productResquest->sizes);
+        if (!empty($productResquest->picture)) {
+
+            $link =$productResquest->picture->store('images');
+
             $imgName = substr($link,strrpos($link ,'/')+1);
-            $product->picture()->create([//on crée une image dans la table picture
+            $product->picture()->create([
                 'link'=>$imgName,
                 'title'=>$productResquest->title_image,
             ]);
-            // $bookResquest->picture->store('./'); //on stock l'image dans la racine
+
         }
         return redirect()->route('products.index')->with('message','Produit ajouté avec succès !');
     }
@@ -72,14 +70,14 @@ class ProductAdminController extends Controller
      */
     public function show($id)
     {
-        //pour recuperer les infos d'un livre dont l'id est passé en paramètre
+        //We retrieve the information of a book whose id is passed as a paramete
         $product = Product::find($id);
         $sizes = Size::All();
         $checkedSizes = [];
 		foreach ($product->sizes as $value) {
 			$checkedSizes[] = $value->id;
 		}
-        //on renvoie la vue  du show
+
         return view('back.products.show',['product'=>$product ,'sizes'=> $sizes,'checkedSizes'=>$checkedSizes]);
     }
 
@@ -116,23 +114,18 @@ class ProductAdminController extends Controller
     {
 
 		$oldImg = $product->picture->link;
-		// Mettre à jour les données
+		//Update form data
 		$product->update($productRequest->all());
 		$product->sizes()->sync($productRequest->sizes);
-		//dd($book, $book->authors);
 
-        // on mets à jour le title de l'image (pas besoin de devoir renvoyer une image pour ça)
 		$product->picture()->update(['title' => $productRequest->title_image]);
 
-		// on mets à jour l'image si une nouvelle à été envoyée
 		if (!empty($productRequest->picture)) {
 			$link    = $productRequest->picture->store('images');
 			$imgName = substr($link, strrpos($link, '/') + 1);
 
 			Storage::delete('images/'.$oldImg);
-			// if (file_exists(public_path('images/'.$oldImg))) {
-			// 	unlink(public_path('images/'.$oldImg));
-			// }
+
 
 			$product->picture()->update([
 				'link' => $imgName,

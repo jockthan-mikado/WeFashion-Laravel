@@ -1,7 +1,7 @@
  @if ($products->hasPages())
     <nav class="Page navigation">
         <ul class="pagination justify-content-center">
-            {{-- Previous Page Link --}}
+
             @if ($products->onFirstPage())
                 <li class="disabled page-item"><span class="page-link">«</span></li>
             @else
@@ -16,7 +16,7 @@
                 @endif
             @endforeach
 
-            {{-- Next Page Link --}}
+
             @if ($products->hasMorePages())
                 <li class="page-item"><a class="page-link" href="{{ $products->nextPageUrl() }}" rel="next">»</a></li>
             @else

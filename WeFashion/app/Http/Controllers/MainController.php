@@ -17,23 +17,23 @@ class MainController extends Controller
     protected $paginate = 6;
     public function __construct(){
 
-        // méthode pour injecter des données à une vue partielle
+        // method to inject data to a partial view
         view()->composer('partials.menu', function($view){
-            $categories = Category::pluck('name', 'id')->all(); // on récupère un tableau associatif ['id' => 1]
-            $view->with('categories', $categories ); // on passe les données à la vue
+            $categories = Category::pluck('name', 'id')->all(); // we get an associative array
+            $view->with('categories', $categories ); // we pass the data to the view
         });
     }
-    //nous disons à laravel que le thème de notre pagination est de bootstrap
+
     protected $paginationTheme = "bootstrap";
     public function index(){
         $products = Product::latest()->paginate(6);
         $numberProducts = count(Product::all());
-        //dd($produits);
+
         return view('front.index', ['products'=> $products, 'numberProducts' => $numberProducts]);
 
     }
     public function showProductBySolde(){
-        //
+
         $products = Product::with('picture')->where('status', 'Solde');
         $numberProducts = count($products->get());
         $products = $products->paginate($this->paginate);
@@ -42,7 +42,7 @@ class MainController extends Controller
     }
 
     public function showProductByCategorie(int $id){
-        // on récupère le modèle genre.id
+        //we retrieve the category model according to the id passed in parameters
 
         $category = Category::find($id);
 
@@ -56,10 +56,10 @@ class MainController extends Controller
 
     public function show(Request $request){
 
-        //on recupère un produit en fonction de la valeur passée en paramètres
+        //we retrieve a product according to the value passed in parameters
         $product = Product::find($request->id);
         $sizes = $product->sizes->toArray();
-        //dd($produit);
+
 
         return view('front.show', ['product'=>$product, 'sizes' => $sizes] );
     }

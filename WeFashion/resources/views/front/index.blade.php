@@ -4,10 +4,10 @@
 @endsection
 
 @section('content')
-    {{--<p class="lead text-muted" style="margin-left:7rem;margin-top:3px;margin-bottom: 3px;">Tous les produits</p>--}}
+
     <h1 class="jumbotron-heading" style="text-align: center;">Tous les produits</h1>
 
-    {{--$products->links()--}}
+
     <div class="album py-5 bg-light">
         <div class="container">
         <span> {{ $numberProducts }} resultats</span>

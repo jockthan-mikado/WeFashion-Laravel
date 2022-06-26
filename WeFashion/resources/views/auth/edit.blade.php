@@ -37,14 +37,14 @@
         @error('picture')
         <span style="color:red">{{$message}}</span>
         @enderror
-        {{-- @dump(public_path('images/'.$book->picture->link)) --}}
+
         @if (file_exists(public_path('images/'.$book->picture->link)))
         <img src="{{asset('images/'.$book->picture->link)}}" width="200">
 
         @endif
         <br>
         Auteur(s) :<br>
-        {{-- @dump($book->authors->first()->id) --}}
+
         @foreach ($authors as $author)
         <label><input type="checkbox" name="authors[]" value="{{$author->id}}" {{in_array($author->id, old('authors', $checkedAuthors))? 'checked':'' }} > {{$author->firstname}} {{$author->name}}</label><br>
         @endforeach

@@ -37,11 +37,7 @@
             @foreach ($sizes as $size)
             <label><input type="checkbox" name="sizes[]" value="{{$size->id}}" {{in_array($size->id, old('sizes', $checkedSizes))? 'checked':'' }} >  {{$size->name}}</label><br>
             @endforeach
-            {{-- <select class="custom-select my-4">
-                @foreach ($sizes as $size)
-                <option value="{{ $size->id }}">{{ $size->name }}</option>
-                @endforeach
-            </select> --}}
+            
 
         </div>
     </div>

@@ -5,7 +5,7 @@
 
 @section('content')
     <h1 class="jumbotron-heading" style="text-align: center;font-weight: 300;">Tous les produits de la categorie: {{ $category->name ?? 'aucune categorie'}} </h1>
-    {{--$products->links()--}}
+ 
     <div class="album py-5 bg-light">
         <div class="container">
         <span> {{ $numberProducts }} resultats</span>
@@ -15,7 +15,7 @@
                 <div class="col">
                     <div class="card mb-4 box-shadow">
                         <a href="{{ route('showProduct',$product->id) }}"><img class="card-img-top"  width="100%" height="400" src="{{asset('images/'.$product->picture->link)}}" alt="{{$product->picture->title}}"/></a>
-                        {{--<img src="{{asset('images/'.$book->picture->link)}}" alt="{{$book->picture->title}}">--}}
+
 
                         <div class="card-body">
                             <p class="card-text">{{$product->name}} <br>{{ \Illuminate\Support\Str::limit($product->description,150)}}</p>

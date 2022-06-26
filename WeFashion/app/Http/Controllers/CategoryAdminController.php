@@ -26,7 +26,7 @@ class CategoryAdminController extends Controller
      */
     public function create()
     {
-         //on recupère toutes les tailles dans la table sizes
+         //we retrieve all the categories in the categories table
          $categories    = Category::All();
 
          return view('back.Category.create', compact('categories'));
@@ -40,7 +40,8 @@ class CategoryAdminController extends Controller
      */
     public function store(CategoryRequest $categoryResquest)
     {
-        Category::create($categoryResquest->validated());  //on crée un book en fonction du formulaire
+       //we create a category according to the data entered in the form
+        Category::create($categoryResquest->validated());
         return redirect()->route('categories.index')->with('message','Produit ajouté avec succès !');
     }
 
@@ -53,7 +54,7 @@ class CategoryAdminController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-        //on renvoie la vue  du show
+
         return view('back.Category.show',['category'=>$category]);
     }
 

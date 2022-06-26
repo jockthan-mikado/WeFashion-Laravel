@@ -9,10 +9,9 @@
 
     <title>WeFashion Backend</title>
 
-    <!-- Bootstrap core CSS -->
+
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="{{asset('css/backend.css')}}" rel="stylesheet">
 </head>
 
@@ -33,9 +32,7 @@
     @yield('content')
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 

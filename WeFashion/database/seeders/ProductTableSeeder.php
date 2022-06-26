@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-//use App\Models\Categorie;
-//use App\Models\Product;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -35,7 +33,7 @@ class ProductTableSeeder extends Seeder
             $file = file_get_contents(public_path('image_origin\\' . $folder . '\\' . rand(1, 10) . '.jpg'));
             Storage::disk('local')->put('images/'.$link, $file);
 			$product->picture()->create([
-				'title' => 'Default', // valeur par défaut
+				'title' => 'Default', 
 				'link'  => $link,
 			]);
 
